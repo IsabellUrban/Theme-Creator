@@ -1,0 +1,13 @@
+.color-input {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  border: none;
+}
+
+.button {
+  width: 80px;
+  background-color: orangered;
+  border: 2px;
+  border-color: white;
+}

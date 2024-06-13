@@ -1,52 +1,51 @@
-import { useState } from "react";
 import "./ColorForm.css";
+import ColorInput from "../ColorInput/ColorInput.jsx";
 
 export default function ColorForm({
-  initialData = { role: "some color", hex: "#123456", contrastText: "#fffff" },
+  onAddColor,
+  initialData = {
+    role: "some color",
+    hex: "#123456",
+    contrastText: "#ffffff",
+  },
 }) {
-  const [hex, setHex] = useState("#123456");
-  const [contrastText, setContrastText] = useState("#fffff");
+  function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData.entries());
+    console.log("Form submitted with data:", data);
 
-  const handleHexChange = (event) => {
-    setHex(event.target.value);
-  };
-
-  const handleContrastTextChange = (event) => {
-    setContrastText(event.target.value);
-  };
+    onAddColor(data);
+    event.target.reset();
+  }
 
   return (
     <form
-      className="colorform"
+      className="color-form"
       aria-labelledby="color form"
-      //   onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
     >
-      <label htmlFor="role">Role</label>
+      <label htmlFor="role">Role:</label>
       <input
         id="role"
         name="role"
         type="text"
         defaultValue={initialData.role}
       />
+      <label htmlFor="hex">Hex:</label>
 
-      <label htmlFor="hex">Hex</label>
-      <input
-        id="hex"
-        name="hex"
-        type="color"
-        defaultValue={initialData.hex}
-        // value={hex}
-        // onChange={handleHexChange}
-      />
-      <label htmlFor="contrast text">Contrast Text</label>
-      <input
-        id="contrast text"
-        name="contrast text"
-        type="color"
+      <ColorInput id="hex" name="hex" defaultValue={initialData.hex} />
+
+      <label htmlFor="contrast text">Contrast Text:</label>
+      <ColorInput
+        id="contrastText"
+        name="contrastText"
         defaultValue={initialData.contrastText}
-        // value={contrastText}
-        // onChange={handleContrastTextChange}
       />
+
+      <button type="submit" className="button">
+        ADD COLOR
+      </button>
     </form>
   );
 }

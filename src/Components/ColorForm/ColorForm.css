@@ -1,7 +1,13 @@
-.colorForm {
+.color-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 1rem;
-  border-bottom: 1px solid var(--granite);
+  gap: 12px;
+  padding: 1em;
+  border: 1px solid orangered;
+}
+
+.button {
+  background-color: orangered;
+  color: white;
+  font-weight: bolder;
 }
