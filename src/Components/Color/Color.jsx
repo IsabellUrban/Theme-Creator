@@ -3,11 +3,10 @@ import Button from "../Button/Button.jsx";
 import { useState } from "react";
 
 export default function Color({ color, onDeleteColor }) {
-  const [isDelete, setIsDelete] = useState(false);
+  const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
 
   function handleToggleButton() {
-    isDelete ? setIsDelete(false) : setIsDelete(true);
-    // setIsDelete((prevState) => !prevState);
+    setIsConfirmingDelete((prevState) => !prevState);
   }
 
   return (
@@ -21,7 +20,7 @@ export default function Color({ color, onDeleteColor }) {
       <h3 className="color-card-headline">{color.hex}</h3>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
-      {!isDelete ? (
+      {!isConfirmingDelete ? (
         <Button type="button" onClick={handleToggleButton}>
           Delete
         </Button>
@@ -35,7 +34,7 @@ export default function Color({ color, onDeleteColor }) {
             type="button"
             onClick={() => {
               onDeleteColor(color.id);
-              setIsDelete(false);
+              isConfirmingDelete(false);
             }}
           >
             Delete

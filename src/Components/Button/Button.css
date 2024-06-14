@@ -1,13 +1,14 @@
 .button {
   appearance: none;
-  border: none;
+  border-color: white;
   width: fit-content;
-  padding: 12px 40px;
-  background: orangered;
+  padding: 8px 35px;
+  background-color: orangered;
   font-weight: 700;
   font-size: 16px;
   border-radius: 5px;
   color: white;
+  margin: 5px 10px;
 }
 
 .button:hover {
