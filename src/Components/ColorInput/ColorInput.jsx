@@ -15,6 +15,7 @@ export default function ColorInput({ id, name, defaultValue }) {
         onChange={(event) => setInput(event.target.value)}
       />
       <input
+        className="color-input"
         type="color"
         value={input}
         onChange={(event) => setInput(event.target.value)}
