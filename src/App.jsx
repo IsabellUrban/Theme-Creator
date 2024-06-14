@@ -26,16 +26,25 @@ function App() {
     <>
       <h1>Theme Creator</h1>
       <ColorForm onAddColor={handleAddColor} />
-      <br />
-      {colors.map((color) => {
-        return (
-          <Color
-            key={color.id}
-            color={color}
-            onDeleteColor={handleDeleteColor}
-          />
-        );
-      })}
+      <>
+        {colors.length === 0 ? (
+          <>
+            <p className="new-color-text">
+              Please add a new Color! <span aria-label="rainbow emoji">🌈</span>
+            </p>
+          </>
+        ) : (
+          colors.map((color) => {
+            return (
+              <Color
+                key={color.id}
+                color={color}
+                onDeleteColor={handleDeleteColor}
+              />
+            );
+          })
+        )}
+      </>
     </>
   );
 }
