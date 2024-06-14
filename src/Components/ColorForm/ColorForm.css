@@ -5,3 +5,8 @@
   padding: 1em;
   border: 1px solid orangered;
 }
+
+.label {
+  font-size: 20px;
+  font-weight: bolder;
+}

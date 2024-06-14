@@ -9,43 +9,46 @@ function App() {
   const [colors, setColors] = useState(initialColors);
 
   function handleAddColor(newColor) {
-    console.log("Adding new color:", newColor);
     setColors([{ id: uid(), ...newColor }, ...colors]);
   }
 
   function handleDeleteColor(id) {
-    console.log("Delete color:", id);
     const colorsToKeep = colors.filter((color) => {
       return color.id !== id;
     });
-    console.log("Remaining colors:", colorsToKeep);
     setColors(colorsToKeep);
   }
 
+  function handleEditColor(id, newColor) {
+    console.log("Edit color: ", id, newColor);
+    const newEditColor = colors.map((color) => {
+      return color.id === id ? { ...color, ...newColor } : color;
+    });
+    setColors(newEditColor);
+  }
+
   return (
-    <>
+    <div className="app">
       <h1>Theme Creator</h1>
       <ColorForm onAddColor={handleAddColor} />
-      <>
-        {colors.length === 0 ? (
-          <>
-            <p className="new-color-text">
-              Please add a new Color! <span aria-label="rainbow emoji">🌈</span>
-            </p>
-          </>
-        ) : (
-          colors.map((color) => {
-            return (
-              <Color
-                key={color.id}
-                color={color}
-                onDeleteColor={handleDeleteColor}
-              />
-            );
-          })
-        )}
-      </>
-    </>
+      {colors.length === 0 ? (
+        <p className="new-color-text">
+          Please add a new color!{" "}
+          <span role="img" aria-label="rainbow emoji">
+            🌈
+          </span>
+        </p>
+      ) : (
+        colors.map((color) => (
+          <Color
+            key={color.id}
+            color={color}
+            onDeleteColor={handleDeleteColor}
+            onEditColor={handleEditColor}
+          />
+        ))
+      )}
+    </div>
   );
 }
 
