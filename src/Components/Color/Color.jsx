@@ -2,6 +2,7 @@ import "./Color.css";
 import Button from "../Button/Button.jsx";
 import { useState } from "react";
 import ColorForm from "../ColorForm/ColorForm.jsx";
+import CopyToClipboard from "./Components/CopyToClipboard/CopyToClipboard.jsx";
 
 export default function Color({ color, onDeleteColor, onEditColor }) {
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
