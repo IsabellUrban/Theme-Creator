@@ -4,6 +4,7 @@ import Button from "../Button/Button.jsx";
 
 export default function ColorForm({
   onAddColor,
+  buttonText = "ADD COLOR",
   initialData = {
     role: "some color",
     hex: "#123456",
@@ -26,25 +27,31 @@ export default function ColorForm({
       aria-labelledby="color form"
       onSubmit={handleSubmit}
     >
-      <label htmlFor="role">Role:</label>
+      <label htmlFor="role" className="label">
+        Role:
+      </label>
       <input
         id="role"
         name="role"
         type="text"
         defaultValue={initialData.role}
       />
-      <label htmlFor="hex">Hex:</label>
+      <label htmlFor="hex" className="label">
+        Hex:
+      </label>
 
       <ColorInput id="hex" name="hex" defaultValue={initialData.hex} />
 
-      <label htmlFor="contrast text">Contrast Text:</label>
+      <label htmlFor="contrast text" className="label">
+        Contrast Text:
+      </label>
       <ColorInput
         id="contrastText"
         name="contrastText"
         defaultValue={initialData.contrastText}
       />
 
-      <Button type="submit">ADD COLOR</Button>
+      <Button type="submit" text={buttonText}></Button>
     </form>
   );
 }
