@@ -3,6 +3,7 @@ import { uid } from "uid";
 import useLocalStorageState from "use-local-storage-state";
 import Color from "./Components/Color/Color";
 import ColorForm from "./Components/ColorForm/ColorForm";
+
 import "./App.css";
 
 function App() {
@@ -22,7 +23,6 @@ function App() {
   }
 
   function handleEditColor(id, newColor) {
-    console.log("Edit color: ", id, newColor);
     const newEditColor = colors.map((color) => {
       return color.id === id ? { ...color, ...newColor } : color;
     });

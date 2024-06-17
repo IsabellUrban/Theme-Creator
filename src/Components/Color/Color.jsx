@@ -2,6 +2,7 @@ import "./Color.css";
 import Button from "../Button/Button.jsx";
 import { useState } from "react";
 import ColorForm from "../ColorForm/ColorForm.jsx";
+import CopyToClipboard from "../CopyToClipboard/CopyToClipboard.jsx";
 
 export default function Color({ color, onDeleteColor, onEditColor }) {
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
@@ -27,7 +28,10 @@ export default function Color({ color, onDeleteColor, onEditColor }) {
         color: color.contrastText,
       }}
     >
-      <h3 className="color-card-headline">{color.hex}</h3>
+      <section>
+        <h3 className="color-card-headline">{color.hex}</h3>
+        <CopyToClipboard copiedText={color.hex} />
+      </section>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
       {!isEditingColor && !isConfirmingDelete && (
