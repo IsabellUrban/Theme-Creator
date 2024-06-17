@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Button from "../Button/Button";
 
 export default function CopyToClipboard({ copiedText }) {
   const [isCopied, setIsCopied] = useState(false);
@@ -21,4 +22,12 @@ export default function CopyToClipboard({ copiedText }) {
       clearInterval(timer);
     };
   }, [isCopied]);
+
+  return (
+    <Button
+      type="Button"
+      onClick={writeClipboardText}
+      text={isCopied ? "SUCCESSFULLY COPIED!" : "COPY"}
+    />
+  );
 }
