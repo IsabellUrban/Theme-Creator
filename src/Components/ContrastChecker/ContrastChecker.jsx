@@ -6,6 +6,9 @@ export default function ContrastChecker({ firstColor, secondColor }) {
   const [contrastResult, setContrastResult] = useState(0);
 
   useEffect(() => {
+    console.log("First Color:", firstColor);
+    console.log("Second Color:", secondColor);
+
     async function fetchContrast() {
       try {
         const response = await fetch(
@@ -20,6 +23,7 @@ export default function ContrastChecker({ firstColor, secondColor }) {
           }
         );
         const responseData = await response.json();
+        console.log("Full Response Data:", responseData);
 
         if (!response.ok) {
           throw new Error(
@@ -28,11 +32,13 @@ export default function ContrastChecker({ firstColor, secondColor }) {
         }
 
         const contrastResult = responseData.overall;
+        console.log("contrastData", responseData);
+        console.log("contrastResult", contrastResult);
 
         setContrastResult(contrastResult);
       } catch (error) {
         console.log("The error: ", error);
-        alert("The error: ", error);
+        alert("The error: " + error);
       }
     }
     fetchContrast();

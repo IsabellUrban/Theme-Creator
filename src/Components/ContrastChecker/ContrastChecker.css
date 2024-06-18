@@ -1,5 +1,5 @@
 .contrast-check-nope {
-  display: none;
+  display: inline-block;
   padding: 2px 6px;
   background: rgb(255, 0, 0);
   color: rgb(0, 0, 0);
@@ -7,7 +7,7 @@
 }
 
 .contrast-check-kinda {
-  display: inline;
+  display: inline-block;
   padding: 2px 6px;
   background: #ff8000;
   color: rgb(0, 0, 0);
