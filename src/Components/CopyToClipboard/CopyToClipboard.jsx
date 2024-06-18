@@ -28,6 +28,7 @@ export default function CopyToClipboard({ copiedText }) {
       type="Button"
       onClick={writeClipboardText}
       text={isCopied ? "SUCCESSFULLY COPIED!" : "COPY"}
+      style={{ background: "#e3e3e3", color: "black" }}
     />
   );
 }
