@@ -3,6 +3,7 @@ import Button from "../Button/Button.jsx";
 import { useState } from "react";
 import ColorForm from "../ColorForm/ColorForm.jsx";
 import CopyToClipboard from "../CopyToClipboard/CopyToClipboard.jsx";
+import ContrastChecker from "../ContrastChecker/ContrastChecker.jsx";
 
 export default function Color({ color, onDeleteColor, onEditColor }) {
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
@@ -34,6 +35,10 @@ export default function Color({ color, onDeleteColor, onEditColor }) {
       </section>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
+      <ContrastChecker
+        firstColor={color.hex}
+        secondColor={color.contrastText}
+      />
       {!isEditingColor && !isConfirmingDelete && (
         <>
           <Button

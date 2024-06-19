@@ -3,7 +3,6 @@ import { uid } from "uid";
 import useLocalStorageState from "use-local-storage-state";
 import Color from "./Components/Color/Color";
 import ColorForm from "./Components/ColorForm/ColorForm";
-
 import "./App.css";
 
 function App() {
