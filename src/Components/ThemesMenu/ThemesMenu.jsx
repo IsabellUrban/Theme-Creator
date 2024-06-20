@@ -1,6 +1,18 @@
+import { useState } from "react";
 import Button from "../Button/Button";
 
-export function ThemesMenu({ currentTheme, handleChangeTheme, themes }) {
+export function ThemesMenu({
+  currentTheme,
+  handleChangeTheme,
+  themes,
+  onAddTheme,
+}) {
+  const [newThemeName, setNewThemeName] = useState("");
+
+  const handleThemeNameChange = (event) => {
+    setNewThemeName(event.target.value);
+  };
+
   return (
     <>
       <label htmlFor="themes-menu">Choose a Theme:</label>
@@ -16,7 +28,20 @@ export function ThemesMenu({ currentTheme, handleChangeTheme, themes }) {
           </option>
         ))}
       </select>
-      <Button type="button" text="ADD"></Button>
+      <input
+        type="text"
+        value={newThemeName}
+        placeholder="Add new Theme Name"
+        onChange={handleThemeNameChange}
+      ></input>
+      <Button
+        type="button"
+        text="ADD"
+        onClick={() => {
+          onAddTheme(newThemeName);
+          setNewThemeName("");
+        }}
+      ></Button>
     </>
   );
 }
