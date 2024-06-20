@@ -1,11 +1,18 @@
-import { initialColors } from "./lib/colors";
+import { initialThemes, initialColors } from "./lib/colors";
 import { uid } from "uid";
 import useLocalStorageState from "use-local-storage-state";
-import Color from "./Components/Color/Color";
-import ColorForm from "./Components/ColorForm/ColorForm";
+import Themes from "./Components/Themes/Themes";
 import "./App.css";
+import { ThemesMenu } from "./Components/ThemesMenu/ThemesMenu";
+import { useState } from "react";
 
 function App() {
+  const [themes, setThemes] = useLocalStorageState("themes", {
+    defaultValue: initialThemes,
+  });
+
+  const [currentTheme, setCurrentTheme] = useState(themes[0]);
+
   const [colors, setColors] = useLocalStorageState("colors", {
     defaultValue: initialColors,
   });
@@ -28,29 +35,32 @@ function App() {
     setColors(newEditColor);
   }
 
-  return (
-    <div className="app">
-      <h1>Theme Creator</h1>
-      <ColorForm onAddColor={handleAddColor} />
-      {colors.length === 0 ? (
-        <p className="new-color-text">
-          Please add a new color!{" "}
-          <span role="img" aria-label="rainbow emoji">
-            🌈
-          </span>
-        </p>
-      ) : (
-        colors.map((color) => (
-          <Color
-            key={color.id}
-            color={color}
-            onDeleteColor={handleDeleteColor}
-            onEditColor={handleEditColor}
-          />
-        ))
-      )}
-    </div>
-  );
-}
+  function handleChangeTheme(event) {
+    const selectedThemeId = event.target.value;
+    const selectedTheme = themes.find((theme) => theme.id === selectedThemeId);
+    setCurrentTheme(selectedTheme);
 
+    return (
+      <div className="app">
+        <h1>Theme Creator</h1>
+        <ThemesMenu
+          themes={themes}
+          currentTheme={currentTheme}
+          setCurrentTheme={setCurrentTheme}
+          onHandleChangeTheme={handleChangeTheme}
+        />
+        {currentTheme && currentTheme.colors ? (
+          <Themes
+            onHandleAddColor={handleAddColor}
+            onHandleDeleteColor={handleDeleteColor}
+            onHandleEditColor={handleEditColor}
+            colors={currentTheme.colors}
+          />
+        ) : (
+          <p>No theme selected</p>
+        )}
+      </div>
+    );
+  }
+}
 export default App;
