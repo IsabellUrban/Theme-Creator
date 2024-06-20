@@ -18,17 +18,38 @@ function App() {
   });
 
   function handleAddColor(newColor) {
-    setColors([{ id: uid(), ...newColor }, ...colors]);
+    const updatedColor = { id: uid(), ...newColor };
+    setColors([updatedColor, ...colors]);
+    if (currentTheme.id === "t1") {
+      return;
+    } else {
+      const updatedTheme = {
+        ...currentTheme,
+        colors: [updatedColor, ...currentTheme.colors],
+      };
+      const updatedThemes = themes.map((theme) =>
+        theme.id === currentTheme.id ? updatedTheme : theme
+      );
+
+      setThemes(updatedThemes);
+      setCurrentTheme(updatedTheme);
+    }
   }
 
   function handleDeleteColor(id) {
     if (currentTheme.id === "t1") {
       return;
     } else {
-      const colorsToKeep = colors.filter((color) => {
-        return color.id !== id;
-      });
-      setColors(colorsToKeep);
+      const updatedColors = currentTheme.colors.filter(
+        (color) => color.id !== id
+      );
+      const updatedTheme = { ...currentTheme, colors: updatedColors };
+      const updatedThemes = themes.map((theme) =>
+        theme.id === currentTheme.id ? updatedTheme : theme
+      );
+
+      setThemes(updatedThemes);
+      setCurrentTheme(updatedTheme);
     }
   }
 
@@ -36,10 +57,17 @@ function App() {
     if (currentTheme.id === "t1") {
       return;
     } else {
-      const newEditColor = colors.map((color) => {
-        return color.id === id ? { ...color, ...newColor } : color;
-      });
-      setColors(newEditColor);
+      const updatedColors = currentTheme.colors.map((color) =>
+        color.id === id ? { ...color, ...newColor } : color
+      );
+
+      const updatedTheme = { ...currentTheme, colors: updatedColors };
+      const updatedThemes = themes.map((theme) =>
+        theme.id === currentTheme.id ? updatedTheme : theme
+      );
+
+      setThemes(updatedThemes);
+      setCurrentTheme(updatedTheme);
     }
   }
 

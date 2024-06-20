@@ -2,9 +2,8 @@ import Color from "../Color/Color.jsx";
 import ColorForm from "../ColorForm/ColorForm.jsx";
 
 export default function Themes({
-  // handleAddColor,
-  handleDeleteColor,
-  handleEditColor,
+  onDeleteColor,
+  onEditColor,
   onAddColor,
   colors,
 }) {
@@ -23,8 +22,8 @@ export default function Themes({
           <Color
             key={color.id}
             color={color}
-            onDeleteColor={handleDeleteColor}
-            onEditColor={handleEditColor}
+            onDeleteColor={onDeleteColor}
+            onEditColor={onEditColor}
           />
         ))
       )}
