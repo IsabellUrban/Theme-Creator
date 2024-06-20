@@ -22,6 +22,7 @@ export default function ColorForm({
 
   return (
     <form
+      name="color-form"
       className="color-form"
       aria-labelledby="color form"
       onSubmit={handleSubmit}

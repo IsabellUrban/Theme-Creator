@@ -2,14 +2,15 @@ import Color from "../Color/Color.jsx";
 import ColorForm from "../ColorForm/ColorForm.jsx";
 
 export default function Themes({
-  handleAddColor,
+  // handleAddColor,
   handleDeleteColor,
   handleEditColor,
+  onAddColor,
   colors,
 }) {
   return (
     <div>
-      <ColorForm onAddColor={handleAddColor} />
+      <ColorForm onAddColor={onAddColor} />
       {colors && colors.length === 0 ? (
         <p className="new-color-text">
           Please add a new color!{" "}

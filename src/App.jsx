@@ -46,6 +46,7 @@ function App() {
   function handleAddTheme(newThemeName) {
     const newTheme = { id: uid(), name: newThemeName, colors: [] };
     setThemes([...themes, newTheme]);
+    setCurrentTheme(newTheme);
   }
 
   function handleChangeTheme(event) {
@@ -61,7 +62,7 @@ function App() {
         themes={themes}
         currentTheme={currentTheme}
         onAddTheme={handleAddTheme}
-        onChangeTheme={handleChangeTheme}
+        onChange={handleChangeTheme}
       />
       {currentTheme && currentTheme.colors ? (
         <Themes
