@@ -77,6 +77,30 @@ function App() {
     setCurrentTheme(selectedTheme);
   }
 
+  function handleEditTheme(updatedTheme) {
+    const updatedThemes = themes.map((theme) =>
+      theme.id === updatedTheme.id ? updatedTheme : theme
+    );
+
+    setThemes(updatedThemes);
+    setCurrentTheme(updatedTheme);
+  }
+
+  function handleDeleteTheme(themeId) {
+    if (currentTheme.id === "t1") {
+      return;
+    } else {
+      const updatedThemes = themes.filter((theme) => theme.id !== themeId);
+      setThemes(updatedThemes);
+
+      if (updatedThemes.length > 0) {
+        setCurrentTheme(updatedThemes[0]);
+      } else {
+        setCurrentTheme(null);
+      }
+    }
+  }
+
   return (
     <div className="app">
       <h1>Theme Creator</h1>
@@ -85,6 +109,8 @@ function App() {
         currentTheme={currentTheme}
         onAddTheme={handleAddTheme}
         onChange={handleChangeTheme}
+        onEditTheme={handleEditTheme}
+        onDeleteTheme={handleDeleteTheme}
       />
       {currentTheme && currentTheme.colors ? (
         <Themes
