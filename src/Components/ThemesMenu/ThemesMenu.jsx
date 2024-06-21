@@ -83,7 +83,7 @@ export function ThemesMenu({
       )}
 
       <div className="themes-menu-box-buttons">
-        {!isEditingTheme && !setIsDeletingTheme ? (
+        {!isEditingTheme && !isDelitingTheme ? (
           <>
             <input
               type="text"
