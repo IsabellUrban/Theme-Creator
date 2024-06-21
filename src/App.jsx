@@ -17,6 +17,15 @@ function App() {
     defaultValue: initialColors,
   });
 
+  function updateCurrentTheme(updatedTheme) {
+    const updatedThemes = themes.map((theme) =>
+      theme.id === currentTheme.id ? updatedTheme : theme
+    );
+
+    setThemes(updatedThemes);
+    setCurrentTheme(updatedTheme);
+  }
+
   function handleAddColor(newColor) {
     const updatedColor = { id: uid(), ...newColor };
     setColors([updatedColor, ...colors]);
@@ -27,12 +36,7 @@ function App() {
         ...currentTheme,
         colors: [updatedColor, ...currentTheme.colors],
       };
-      const updatedThemes = themes.map((theme) =>
-        theme.id === currentTheme.id ? updatedTheme : theme
-      );
-
-      setThemes(updatedThemes);
-      setCurrentTheme(updatedTheme);
+      updateCurrentTheme(updatedTheme);
     }
   }
 
@@ -44,12 +48,7 @@ function App() {
         (color) => color.id !== id
       );
       const updatedTheme = { ...currentTheme, colors: updatedColors };
-      const updatedThemes = themes.map((theme) =>
-        theme.id === currentTheme.id ? updatedTheme : theme
-      );
-
-      setThemes(updatedThemes);
-      setCurrentTheme(updatedTheme);
+      updateCurrentTheme(updatedTheme);
     }
   }
 
@@ -62,12 +61,7 @@ function App() {
       );
 
       const updatedTheme = { ...currentTheme, colors: updatedColors };
-      const updatedThemes = themes.map((theme) =>
-        theme.id === currentTheme.id ? updatedTheme : theme
-      );
-
-      setThemes(updatedThemes);
-      setCurrentTheme(updatedTheme);
+      updateCurrentTheme(updatedTheme);
     }
   }
 
